@@ -50,6 +50,31 @@
         border-right: 1px solid var(--border);
       }
 
+      .sidebar-back {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        text-decoration: none;
+        color: var(--text-primary);
+        transition: color 0.2s, opacity 0.2s;
+        margin-bottom: 10px;
+        cursor: pointer;
+        opacity: 0.7;
+      }
+
+      .sidebar-back svg {
+        width: 24px;
+        height: 24px;
+        stroke: currentColor;
+      }
+
+      .sidebar-back:hover {
+        color: var(--accent);
+        opacity: 1;
+      }
+
       .sidebar-icon {
         width: 24px;
         height: 24px;
@@ -306,6 +331,129 @@
         transform: scale(1.1);
       }
 
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.65);
+        backdrop-filter: blur(4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 20;
+        padding: 24px;
+      }
+
+      .modal-overlay[hidden] {
+        display: none;
+      }
+
+      .modal-card {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px;
+        width: min(420px, 100%);
+        box-shadow: 0 18px 42px rgba(0, 0, 0, 0.45);
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .modal-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .modal-description {
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.5;
+      }
+
+      .modal-form {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .modal-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .modal-label {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .modal-input,
+      .modal-textarea,
+      .modal-select {
+        width: 100%;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 14px 16px;
+        color: var(--text-primary);
+        font-size: 15px;
+        transition: border-color 0.2s ease;
+      }
+
+      .modal-textarea {
+        resize: vertical;
+        min-height: 90px;
+      }
+
+      .modal-input:focus,
+      .modal-textarea:focus,
+      .modal-select:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
+
+      .modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+      }
+
+      .modal-btn {
+        border: none;
+        border-radius: 999px;
+        padding: 12px 22px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s ease, background 0.2s ease;
+      }
+
+      .modal-btn.primary {
+        background: var(--accent);
+        color: var(--bg-primary);
+      }
+
+      .modal-btn.secondary {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text-primary);
+      }
+
+      .modal-btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .modal-btn.primary:hover {
+        background: #ffa648;
+      }
+
+      .modal-btn.secondary:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+
       .task-list {
         display: flex;
         flex-direction: column;
@@ -422,6 +570,11 @@
           border-bottom: 1px solid var(--border);
         }
 
+        .sidebar-back {
+          margin-bottom: 0;
+          margin-right: auto;
+        }
+
         .main-content {
           flex-direction: column;
         }
@@ -441,6 +594,12 @@
   <body>
     <div class="app-container">
       <aside class="sidebar">
+        <a class="sidebar-back" href="menu.html" aria-label="Back to menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+          </svg>
+        </a>
         <div class="sidebar-icon" id="menu-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -498,7 +657,7 @@
 
         <section class="details-panel">
           <div class="details-header" id="details-header">14 Oct.</div>
-          
+
           <div class="details-content" id="details-content">
             <div class="empty-state">
               <div class="empty-icon">☺</div>
@@ -518,12 +677,67 @@
       <button class="fab" id="add-btn">
         <span>+</span>
       </button>
+
+      <div class="modal-overlay" id="task-modal" hidden>
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="task-modal-title">
+          <h2 class="modal-title" id="task-modal-title">Nouvel événement</h2>
+          <p class="modal-description">
+            Ajoutez un rappel personnalisé à votre calendrier BeaverTask.
+          </p>
+          <form class="modal-form" id="task-form">
+            <div class="modal-field">
+              <label class="modal-label" for="task-title">Titre</label>
+              <input
+                class="modal-input"
+                type="text"
+                id="task-title"
+                name="title"
+                placeholder="Ex. Rendez-vous"
+                required
+                autocomplete="off"
+              />
+            </div>
+
+            <div class="modal-field">
+              <label class="modal-label" for="task-date">Date</label>
+              <input class="modal-input" type="date" id="task-date" name="date" required />
+            </div>
+
+            <div class="modal-field">
+              <label class="modal-label" for="task-tag">Catégorie</label>
+              <input
+                class="modal-input"
+                type="text"
+                id="task-tag"
+                name="tag"
+                placeholder="Ex. Santé, Travail, Famille"
+                autocomplete="off"
+              />
+            </div>
+
+            <div class="modal-field">
+              <label class="modal-label" for="task-description">Notes</label>
+              <textarea
+                class="modal-textarea"
+                id="task-description"
+                name="description"
+                placeholder="Ajoutez des détails importants..."
+              ></textarea>
+            </div>
+
+            <div class="modal-actions">
+              <button type="button" class="modal-btn secondary" id="task-cancel">Annuler</button>
+              <button type="submit" class="modal-btn primary">Ajouter</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
     <script>
       const STORAGE_KEY = "beavertask_tasks";
-      
+
       const state = {
         tasks: [],
         currentYear: new Date().getFullYear(),
@@ -578,7 +792,7 @@
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
         });
-        
+
         if (created) {
           state.tasks.push(created);
           saveTasks();
@@ -615,22 +829,41 @@
         return `${year}-${month}-${day}`;
       };
 
+      const ensureSelectedDate = () => {
+        if (!(state.selectedDate instanceof Date)) {
+          state.selectedDate = new Date();
+        }
+      };
+
+      const parseDateInput = (value) => {
+        if (!value || typeof value !== 'string') {
+          return new Date();
+        }
+
+        const [year, month, day] = value.split('-').map(Number);
+        if (!year || !month || !day) {
+          return new Date();
+        }
+
+        return new Date(year, month - 1, day);
+      };
+
       const renderCalendar = () => {
         const grid = document.getElementById('calendar-grid');
         const monthDisplay = document.getElementById('month-display');
-        
+
         monthDisplay.textContent = monthNames[state.currentMonth];
-        
+
         grid.innerHTML = '';
-        
+
         const firstDay = new Date(state.currentYear, state.currentMonth, 1);
         const lastDay = new Date(state.currentYear, state.currentMonth + 1, 0);
         const startDay = firstDay.getDay();
         const totalDays = lastDay.getDate();
-        
+
         const today = new Date();
         const todayKey = getDateKey(today);
-        
+
         const taskMap = state.tasks.reduce((map, task) => {
           if (task.dueDate) {
             if (!map.has(task.dueDate)) {
@@ -640,19 +873,19 @@
           }
           return map;
         }, new Map());
-        
+
         for (let i = 0; i < startDay; i++) {
           const prevMonthDay = new Date(state.currentYear, state.currentMonth, -startDay + i + 1);
           const cell = createCalendarCell(prevMonthDay, true, taskMap);
           grid.appendChild(cell);
         }
-        
+
         for (let day = 1; day <= totalDays; day++) {
           const date = new Date(state.currentYear, state.currentMonth, day);
           const cell = createCalendarCell(date, false, taskMap);
           grid.appendChild(cell);
         }
-        
+
         const cellsCount = grid.children.length;
         const remainingCells = Math.ceil(cellsCount / 7) * 7 - cellsCount;
         for (let i = 1; i <= remainingCells; i++) {
@@ -665,38 +898,38 @@
       const createCalendarCell = (date, inactive, taskMap) => {
         const cell = document.createElement('div');
         cell.className = 'calendar-cell';
-        
+
         const dateKey = getDateKey(date);
         const today = new Date();
         const todayKey = getDateKey(today);
-        
+
         if (inactive) {
           cell.classList.add('inactive');
         }
-        
+
         if (dateKey === todayKey) {
           cell.classList.add('today');
         }
-        
+
         if (state.selectedDate && getDateKey(state.selectedDate) === dateKey) {
           cell.classList.add('selected');
         }
-        
+
         if (taskMap.has(dateKey)) {
           cell.classList.add('has-events');
         }
-        
+
         const dateSpan = document.createElement('span');
         dateSpan.className = 'cell-date';
         dateSpan.textContent = date.getDate();
         cell.appendChild(dateSpan);
-        
+
         cell.addEventListener('click', () => {
           state.selectedDate = date;
           renderCalendar();
           renderDetails();
         });
-        
+
         return cell;
       };
 
@@ -704,20 +937,18 @@
         const detailsHeader = document.getElementById('details-header');
         const detailsContent = document.getElementById('details-content');
         const eventInput = document.getElementById('event-input');
-        
-        if (!state.selectedDate) {
-          state.selectedDate = new Date();
-        }
-        
+
+        ensureSelectedDate();
+
         const dateKey = getDateKey(state.selectedDate);
         const day = state.selectedDate.getDate();
         const month = monthNamesFull[state.selectedDate.getMonth()].substring(0, 3);
-        
+
         detailsHeader.textContent = `${day} ${month}.`;
         eventInput.placeholder = `Ajout évén. le ${day} ${month.toLowerCase()}.`;
-        
+
         const tasksForDate = state.tasks.filter(task => task.dueDate === dateKey);
-        
+
         if (tasksForDate.length === 0) {
           detailsContent.innerHTML = `
             <div class="empty-state">
@@ -738,9 +969,9 @@
               </div>
             </div>
           `).join('');
-          
+
           detailsContent.innerHTML = `<div class="task-list">${taskListHTML}</div>`;
-          
+
           detailsContent.querySelectorAll('.task-checkbox').forEach(checkbox => {
             checkbox.addEventListener('click', (e) => {
               const id = e.target.dataset.id;
@@ -750,7 +981,7 @@
               }
             });
           });
-          
+
           detailsContent.querySelectorAll('.task-action-btn.delete').forEach(btn => {
             btn.addEventListener('click', (e) => {
               const id = e.target.dataset.id;
@@ -781,19 +1012,100 @@
         badge.textContent = today.getDate();
       };
 
+      const addBtn = document.getElementById('add-btn');
+      const taskModal = document.getElementById('task-modal');
+      const taskForm = document.getElementById('task-form');
+      const taskTitleInput = document.getElementById('task-title');
+      const taskDateInput = document.getElementById('task-date');
+      const taskTagInput = document.getElementById('task-tag');
+      const taskDescriptionInput = document.getElementById('task-description');
+      const taskCancelBtn = document.getElementById('task-cancel');
+
+      const updateModalDateInput = () => {
+        if (!taskDateInput) {
+          return;
+        }
+
+        ensureSelectedDate();
+        taskDateInput.value = getDateKey(state.selectedDate);
+      };
+
+      const openTaskModal = () => {
+        if (!taskModal) {
+          return;
+        }
+
+        updateModalDateInput();
+        taskModal.removeAttribute('hidden');
+        requestAnimationFrame(() => {
+          taskTitleInput?.focus();
+        });
+      };
+
+      const closeTaskModal = () => {
+        if (!taskModal) {
+          return;
+        }
+
+        taskModal.setAttribute('hidden', '');
+        taskForm?.reset();
+        updateModalDateInput();
+      };
+
       document.getElementById('prev-month').addEventListener('click', () => changeMonth(-1));
       document.getElementById('next-month').addEventListener('click', () => changeMonth(1));
-      
-      document.getElementById('add-btn').addEventListener('click', () => {
-        const input = document.getElementById('event-input');
-        input.focus();
+
+      addBtn?.addEventListener('click', openTaskModal);
+
+      taskCancelBtn?.addEventListener('click', closeTaskModal);
+
+      taskModal?.addEventListener('click', (event) => {
+        if (event.target === taskModal) {
+          closeTaskModal();
+        }
       });
 
-      document.getElementById('event-input').addEventListener('keypress', (e) => {
+      taskForm?.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const title = taskTitleInput?.value.trim();
+        if (!title) {
+          taskTitleInput?.focus();
+          return;
+        }
+
+        ensureSelectedDate();
+        const dueDateValue = taskDateInput?.value || getDateKey(state.selectedDate);
+        const descriptionValue = taskDescriptionInput?.value.trim() ?? '';
+        const tagValue = taskTagInput?.value.trim() ?? '';
+
+        const selectedDate = parseDateInput(dueDateValue);
+        state.selectedDate = selectedDate;
+
+        addTask({
+          title,
+          dueDate: getDateKey(selectedDate),
+          description: descriptionValue,
+          tag: tagValue,
+          completed: false,
+        });
+
+        closeTaskModal();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && taskModal && !taskModal.hasAttribute('hidden')) {
+          closeTaskModal();
+        }
+      });
+
+      const quickAddInput = document.getElementById('event-input');
+      quickAddInput?.addEventListener('keypress', (e) => {
         if (e.key === 'Enter' && e.target.value.trim()) {
           const title = e.target.value.trim();
+          ensureSelectedDate();
           const dateKey = getDateKey(state.selectedDate);
-          
+
           addTask({
             title: title,
             dueDate: dateKey,
@@ -801,7 +1113,7 @@
             tag: '',
             completed: false,
           });
-          
+
           e.target.value = '';
         }
       });
