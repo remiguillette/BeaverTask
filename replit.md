@@ -6,7 +6,8 @@ Beavertask is a beautiful Samsung-style calendar application built with vanilla 
 ## Features
 - ✅ **Samsung-Style Design**: Modern, minimalist black interface with landscape orientation
 - ✅ **Interactive Calendar**: Full month view with date selection and task display
-- ✅ **Task Management**: Create, complete, and delete tasks directly from the calendar
+- ✅ **Task List View**: Dedicated view showing all tasks organized by category (Overdue, Upcoming, No Due Date, Completed)
+- ✅ **Task Management**: Create, complete, and delete tasks directly from the calendar or task list
 - ✅ **Month Navigation**: Navigate between months with prev/next controls
 - ✅ **Date Selection**: Click any date to view and manage tasks for that day
 - ✅ **Event Indicators**: Visual dots show which dates have tasks
@@ -49,6 +50,17 @@ Beavertask is a beautiful Samsung-style calendar application built with vanilla 
 4. Selected date is shown with an underline and displays its tasks in the right panel
 5. Dates with tasks show a small orange dot indicator
 
+### Task List View
+1. Click the Task List icon (fourth icon in sidebar) to view all tasks
+2. Tasks are automatically organized into categories:
+   - **Overdue**: Tasks past their due date
+   - **Upcoming**: Tasks with future due dates (sorted by date)
+   - **No Due Date**: Tasks without a due date
+   - **Completed**: Finished tasks
+3. Toggle task completion by clicking the checkbox
+4. Delete tasks using the 🗑️ button
+5. Click the Calendar icon to return to calendar view
+
 ## Task Status Logic
 - **Completed**: Task is marked as complete
 - **Overdue**: Task is not complete and due date has passed
@@ -69,6 +81,13 @@ All tasks are stored in your browser's localStorage under the key `beavertask_ta
 
 ## Recent Changes
 - **October 14, 2025** (Latest): 
+  - **Added Task List View**: New dedicated view to see all tasks organized by category
+  - Added Task List icon to sidebar for easy navigation between calendar and task list views
+  - Task list automatically categorizes tasks as Overdue, Upcoming, No Due Date, or Completed
+  - Tasks in task list are sorted by due date within each category
+  - Can manage tasks (complete/delete) directly from task list view
+  
+- **October 14, 2025**: 
   - Complete redesign to Samsung-style calendar in landscape orientation
   - Added left sidebar with menu and calendar icons
   - Implemented calendar-first layout with date selection as primary interaction
