@@ -70,7 +70,17 @@ All tasks are stored in your browser's localStorage under the key `beavertask_ta
   - Overdue: #f45c84 (pink/red)
 
 ## Recent Changes
-- **October 14, 2025**: 
+- **October 14, 2025** (Latest): 
+  - Enhanced mobile UI/UX with comprehensive responsive design improvements
+  - Added multiple breakpoints: 480px (small mobile), 768px (mobile/tablet), 769-1024px (tablet landscape)
+  - Improved header layout: status pill now stacks below on mobile for better space utilization
+  - Fixed search box overflow with flexible sizing for all screen sizes
+  - Optimized calendar for mobile: reduced cell heights (90px → 70px → 60px) and improved spacing
+  - Enhanced task grid with responsive min() guard for better small screen support
+  - Improved filter buttons and controls with better wrapping and larger touch targets
+  - Better font sizing and spacing across all mobile viewports
+  
+- **October 14, 2025** (Initial): 
   - Initial implementation with task list, calendar view, and QR code sharing
   - Added full CRUD operations including Edit functionality for updating existing tasks
   - Implemented localStorage persistence for offline-first experience
