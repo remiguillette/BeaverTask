@@ -467,6 +467,11 @@
               </svg>
             </button>
             <div class="month-display" id="month-display">OCT.</div>
+            <button class="icon-btn" id="next-month">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
             <div class="header-controls">
               <button class="icon-btn" id="search-btn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -767,6 +772,7 @@
           state.currentYear += 1;
         }
         renderCalendar();
+        renderDetails();
       };
 
       const updateCurrentDayBadge = () => {
@@ -776,6 +782,7 @@
       };
 
       document.getElementById('prev-month').addEventListener('click', () => changeMonth(-1));
+      document.getElementById('next-month').addEventListener('click', () => changeMonth(1));
       
       document.getElementById('add-btn').addEventListener('click', () => {
         const input = document.getElementById('event-input');
