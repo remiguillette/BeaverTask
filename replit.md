@@ -1,17 +1,18 @@
-# Beavertask - Task Management Kiosk
+# Beavertask - Samsung-Style Calendar
 
 ## Overview
-Beavertask is a beautiful, self-contained task management application built with vanilla HTML, CSS, and JavaScript. It features a dark-themed kiosk interface with orange accent colors, perfect for managing tasks with style.
+Beavertask is a beautiful Samsung-style calendar application built with vanilla HTML, CSS, and JavaScript. It features a modern, minimalist black design with landscape orientation, perfect for managing tasks and events with style.
 
 ## Features
-- ✅ **Full CRUD Operations**: Create, Read, Update (Edit), and Delete tasks
-- ✅ **Task Status Tracking**: Automatic status detection (Pending, Completed, Overdue)
-- ✅ **Filtering**: Filter tasks by All, Pending, Completed, or Overdue status
-- ✅ **Search**: Search tasks by title, description, or tag
-- ✅ **Calendar View**: Interactive calendar showing tasks by due date
-- ✅ **QR Code Sharing**: Generate QR codes to share task details
+- ✅ **Samsung-Style Design**: Modern, minimalist black interface with landscape orientation
+- ✅ **Interactive Calendar**: Full month view with date selection and task display
+- ✅ **Task Management**: Create, complete, and delete tasks directly from the calendar
+- ✅ **Month Navigation**: Navigate between months with prev/next controls
+- ✅ **Date Selection**: Click any date to view and manage tasks for that day
+- ✅ **Event Indicators**: Visual dots show which dates have tasks
+- ✅ **Today Highlight**: Current date highlighted with orange border
 - ✅ **Local Storage**: All tasks are saved in browser localStorage (no backend required)
-- ✅ **Responsive Design**: Works on desktop and mobile devices
+- ✅ **Responsive Design**: Works on desktop, tablet, and mobile devices
 
 ## Technology Stack
 - **Frontend**: Pure vanilla HTML5, CSS3, and JavaScript (no frameworks)
@@ -29,27 +30,24 @@ Beavertask is a beautiful, self-contained task management application built with
 ## How to Use
 
 ### Adding a Task
-1. Click the "New task" button or select "Add task" from the Tasks menu
-2. Fill in the task details:
-   - Title (required)
-   - Description (optional)
-   - Due date (required)
-   - Tag (optional)
-3. Click "Save task"
+1. Click on any date in the calendar to select it
+2. Type your task in the input field at the bottom of the details panel
+3. Press Enter to create the task
 
 ### Managing Tasks
-- **Edit Task**: Click the "Edit" button to modify an existing task
-- **Mark Complete/Pending**: Click the status button on any task card
-- **Delete Task**: Click the "Delete" button on any task card
-- **Share Task**: Click "Share QR" to generate a QR code for the task
-- **Search Tasks**: Use the search box to find tasks by title, description, or tag
-- **Filter Tasks**: Use the filter buttons to view specific task types
+- **Select a Date**: Click any date in the calendar to view tasks for that day
+- **Complete a Task**: Click the checkbox next to any task to mark it as complete
+- **Delete a Task**: Click the × button on any task to delete it
+- **Navigate Months**: Use the left/right arrow buttons to move between months
+- **Go to Today**: Click the search icon to jump back to today's date
+- **View Task Count**: Dates with tasks show a small orange dot indicator
 
 ### Calendar View
-1. Click "Calendar" from the Tasks menu
-2. Navigate between months using Prev/Next buttons
-3. View tasks on their due dates
-4. Completed tasks are shown in green, pending tasks in orange
+1. Use Prev (←) and Next (→) buttons to navigate between months
+2. Click any date to view and manage tasks for that day
+3. The current date is highlighted with an orange border
+4. Selected date is shown with an underline and displays its tasks in the right panel
+5. Dates with tasks show a small orange dot indicator
 
 ## Task Status Logic
 - **Completed**: Task is marked as complete
@@ -60,34 +58,31 @@ Beavertask is a beautiful, self-contained task management application built with
 All tasks are stored in your browser's localStorage under the key `beavertask_tasks`. Data persists between sessions but is specific to each browser/device.
 
 ## Design System
-- **Background**: Radial gradient from dark purple to black
+- **Background**: Pure black (#000000) with subtle secondary backgrounds
 - **Accent Color**: Orange (#f89422)
-- **Card Background**: Semi-transparent dark cards with blur effects
-- **Text**: Light gray/white text for readability
+- **Card Background**: Dark cards (#0a0a0a, #0f0f0f)
+- **Text**: White primary (#ffffff), gray secondary (#999999), muted (#666666)
 - **Status Colors**:
-  - Success (Completed): #26d9a6 (green)
-  - Pending: #ffb347 (orange)
-  - Overdue: #f45c84 (pink/red)
+  - Completed: Checkbox with orange background
+  - Current Day: Orange border (#f89422)
+  - Selected Date: White underline indicator
 
 ## Recent Changes
 - **October 14, 2025** (Latest): 
-  - Enhanced mobile UI/UX with comprehensive responsive design improvements
-  - Added multiple breakpoints: 480px (small mobile), 768px (mobile/tablet), 769-1024px (tablet landscape)
-  - Improved header layout: status pill now stacks below on mobile for better space utilization
-  - Fixed search box overflow with flexible sizing for all screen sizes
-  - Optimized calendar for mobile: reduced cell heights (90px → 70px → 60px) and improved spacing
-  - Enhanced task grid with responsive min() guard for better small screen support
-  - Improved filter buttons and controls with better wrapping and larger touch targets
-  - Better font sizing and spacing across all mobile viewports
-  
-- **October 14, 2025** (Initial): 
-  - Initial implementation with task list, calendar view, and QR code sharing
-  - Added full CRUD operations including Edit functionality for updating existing tasks
-  - Implemented localStorage persistence for offline-first experience
-  - Task status tracking with automatic overdue detection
+  - Complete redesign to Samsung-style calendar in landscape orientation
+  - Added left sidebar with menu and calendar icons
+  - Implemented calendar-first layout with date selection as primary interaction
+  - Created details panel on right side showing tasks for selected date
+  - Added month navigation with prev/next arrow buttons
+  - Implemented visual indicators: orange border for today, underline for selected date, dots for dates with tasks
+  - Added floating action button for quick event creation
+  - Streamlined task creation: type in input field and press Enter
+  - Maintained localStorage persistence for all tasks
+  - Responsive design adapts to mobile and tablet devices
 
 ## User Preferences
 - Vanilla HTML/CSS/JavaScript only (no React or frameworks)
+- Samsung-style calendar design with landscape orientation
 - Dark theme with orange accents
-- Kiosk-style interface
+- Calendar-first interface
 - Local storage for data persistence
